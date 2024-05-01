@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { MoreVert } from "@mui/icons-material";
 import { Menu, MenuItem, styled } from "@mui/material";
 import { useState } from "react";
@@ -6,11 +7,11 @@ const MenuOption = styled(MenuItem)`
   padding: 10px 60px 5px 24px;
   color: #4a4a4a;
 `;
-const HeaderMenu = () => {
-  const [open, setOpen] = useState(null);
+const HeaderMenu = ({ setOpenDrawer }) => {
+  const [open, setOpen] = useState(false);
 
   const handleClose = () => {
-    setOpen(null);
+    setOpen(false);
   };
   const handleClick = (e) => {
     setOpen(e.currentTarget);
@@ -23,14 +24,21 @@ const HeaderMenu = () => {
         keepMounted
         open={open}
         onClose={handleClose}
-        getContentAnchorE1={null}
+        // getContentAnchorE1={null}
         anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
         transformOrigin={{
           vertical: "top",
           horizontal: "right",
         }}
       >
-        <MenuOption onClick={handleClose}>Profile</MenuOption>
+        <MenuOption
+          onClick={() => {
+            handleClose();
+            setOpenDrawer(true);
+          }}
+        >
+          Profile
+        </MenuOption>
       </Menu>
     </>
   );
