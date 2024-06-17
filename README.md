@@ -94,3 +94,7 @@ This repository contain the Let's Talk App Code build using the React.js for Fro
 ## Preview
 
 <img src="https://github.com/krishna102001/letstalk/blob/master/Preview/Screenshot%202024-06-17%20at%206.56.03%E2%80%AFPM.png?raw=true" />
+
+<img src="https://github.com/krishna102001/letstalk/blob/master/Preview/Screenshot%202024-06-17%20at%206.56.39%E2%80%AFPM.png?raw=true" />
+
+<img src="https://github.com/krishna102001/letstalk/blob/master/Preview/Screenshot%202024-06-17%20at%206.57.00%E2%80%AFPM.png?raw=true" />
