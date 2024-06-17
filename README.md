@@ -1,4 +1,4 @@
-<h1>Let's Talk</h1>
+<h1>Let's Talk App</h1>
 
 ## Overview
 
