@@ -63,9 +63,9 @@ const LoginDialog = () => {
     <Dialog open={true} PaperProps={{ sx: dialogStyle }} hideBackdrop={true}>
       <Component>
         <Container>
-          <Title>Use WhatsApp on your computer</Title>
+          <Title>Use let's talk on your computer</Title>
           <StyledList>
-            <ListItem>1. Open WhatsApp on your phone</ListItem>
+            <ListItem>1. Open let's talk on your phone</ListItem>
             <ListItem>2. Tap Menu on Android, or Settings on iPhone</ListItem>
             <ListItem>3. Tap Linked devices and then Link a device</ListItem>
             <ListItem>

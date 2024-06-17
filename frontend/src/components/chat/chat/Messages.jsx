@@ -1,6 +1,6 @@
 import { Box, styled } from "@mui/material";
 import Footer from "./Footer";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { AccountContext } from "../../../context/AccountProvider";
 import { getMessage, newMessage } from "../../service/api";
 import Message from "./Message";
@@ -15,13 +15,37 @@ const Component = styled(Box)`
   overflow-y: scroll;
 `;
 
+// const Container = styled(Box)`
+//   padding: 0px;
+//   margin: 0px;
+// `;
+
 const Messages = ({ person, conversation }) => {
-  const { account } = useContext(AccountContext);
+  const { account, socket, newMessageFlag, setNewMessageFlag } =
+    useContext(AccountContext);
   const [value, setValue] = useState("");
   const [messages, setMessages] = useState([]);
-  const [newMessageFlag, setNewMessageFlag] = useState(false);
+
   const [file, setFile] = useState();
   const [image, setImage] = useState();
+  const scrollRef = useRef();
+  const [incomingMessage, setIncomingMessage] = useState(null);
+
+  useEffect(() => {
+    socket.current.on("getMessage", (data) => {
+      setIncomingMessage({
+        ...data,
+        createdAt: Date.now(),
+      });
+    });
+  }, []);
+
+  useEffect(() => {
+    incomingMessage &&
+      conversation?.members?.includes(incomingMessage.senderId) &&
+      setMessages((prev) => [...prev, incomingMessage]);
+  }, [incomingMessage, conversation]);
+
   useEffect(() => {
     const getMessageDetails = async () => {
       let data = await getMessage(conversation._id);
@@ -30,6 +54,9 @@ const Messages = ({ person, conversation }) => {
     conversation._id && getMessageDetails();
   }, [person._id, conversation._id, newMessageFlag]);
 
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView({ transition: "smooth" });
+  }, [messages]);
   const sendText = async (e) => {
     // console.log(e);
     const code = e.keyCode || e.which;
@@ -52,6 +79,9 @@ const Messages = ({ person, conversation }) => {
           text: image,
         };
       }
+
+      socket.current.emit("sendMessage", message);
+
       await newMessage(message);
       setValue("");
       setFile("");

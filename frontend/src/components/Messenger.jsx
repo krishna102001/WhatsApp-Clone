@@ -34,12 +34,10 @@ const Messenger = () => {
         <>
           <LoginHeader>
             <Toolbar>
-              <WhatsAppIcon
-                sx={{
-                  display: { xs: "none", md: "flex" },
-                  mr: 1,
-                  fontSize: "40px",
-                }}
+              <img
+                src='https://www.letstalk.academy/logo.png?v=13'
+                alt="let's talk"
+                style={{ width: "50px" }}
               />
               <Typography
                 variant='h6'
@@ -56,7 +54,7 @@ const Messenger = () => {
                   textDecoration: "none",
                 }}
               >
-                WhatsApp Clone
+                Let's Talk App
               </Typography>
             </Toolbar>
           </LoginHeader>
